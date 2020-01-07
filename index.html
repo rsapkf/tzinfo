@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>tzinfo</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+  </head>
+  <body>
+    <div class="container">
+        <section class="section">
+            <h1 class="title"><i class="fa fa-terminal fa-sm"></i>&nbsp;Current Time in Major Cities</h2>
+            <h3 class="subtitle"><a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">Universal Time</a> is now: <span id="utc-time"></span></h3>
+            <h3 class="subtitle"><a href="https://en.wikipedia.org/wiki/Year_2038_problem">Unix Timestamp</a>: <span id="unix-timestamp"></span></h3>
+        </section>
+
+        <div class="box">
+            <div class="content">
+                <p>
+                <strong>Your Estimated Time Zone:</strong>
+                <span id="user-timezone"></span>
+                <br>
+                <strong>Your Estimated Local Time:</strong>
+                <span id="user-time"></span>
+                <br>
+                <strong>Week of the Year:</strong>
+                <span id="week-of-the-year"></span>
+                <br>
+                <strong>Day of the Year:</strong>
+                <span id="day-of-the-year"></span>
+                </p>
+            </div>
+        </div>
+    
+        <table class="table is-bordered is-hoverable is-fullwidth">
+            <thead>
+            <tr>
+                <th>City</th>
+                <th>Local Time (± UTC Offset)</th>
+            </tr>
+            </thead>
+            <!-- <tfoot>
+            <tr>
+                <th><abbr title=""></abbr></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </tfoot> -->
+            <tbody>
+            <tr>
+                <td>
+                <a href="https://en.wikipedia.org/wiki/New_York" title=""
+                    >New York, NY, USA</a
+                >
+                </td>
+                <td><p id="nyc"></p></td>
+            </tr>
+            <tr>
+                <td>
+                <a href="https://en.wikipedia.org/wiki/Los_Angeles" title=""
+                    >Los Angeles, CA, USA</a
+                >
+                </td>
+                <td><p id="la"></p></td>
+            </tr>
+            <tr>
+                <td>
+                <a href="https://en.wikipedia.org/wiki/London" title=""
+                    >London, UK</a
+                >
+                </td>
+                <td><p id="london"></p></td>
+            </tr>
+            <tr>
+                <td>
+                <a href="https://en.wikipedia.org/wiki/Tokyo" title=""
+                    >Tokyo, Japan</a
+                >
+                </td>
+                <td><p id="tokyo"></p></td>
+            </tr>
+            <tr>
+                <td>
+                <a href="https://en.wikipedia.org/wiki/Sydney" title=""
+                    >Sydney, Australia</a
+                >
+                </td>
+                <td><p id="sydney"></p></td>
+            </tr>
+            <tr>
+                <td>
+                <a href="https://en.wikipedia.org/wiki/Shanghai" title=""
+                    >Shanghai, China</a
+                >
+                </td>
+                <td><p id="shanghai"></p></td>
+            </tr>
+            <tr>
+                <td>
+                <a href="https://en.wikipedia.org/wiki/New_Delhi" title=""
+                >New Delhi, India</a
+                >
+            </td>
+            <td><p id="new-delhi"></p></td>
+            </tr>
+            <tr>
+                <td>
+                <a href="https://en.wikipedia.org/wiki/Paris" title=""
+                    >Paris, France</a
+                >
+                </td>
+                <td><p id="paris"></p></td>
+            </tr>
+            <tr>
+                <td>
+                <a href="https://en.wikipedia.org/wiki/Moscow" title=""
+                    >Moscow, Russia</a
+                >
+                </td>
+                <td><p id="moscow"></p></td>
+            </tr>
+            <tr>
+                <td>
+                <a href="https://en.wikipedia.org/wiki/Abu_Dhabi" title=""
+                    >Abu Dhabi, UAE</a
+                >
+                </td>
+                <td><p id="abu-dhabi"></p></td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- <hr> -->
+
+        <div class="faq">
+            <p class="question">Why?</p>
+            <p>This is a solution to one of my personal problems. I need to check and compare current times of many places at once. There are comprehensive solutions to this problem but not as concise as this list. If you want more timzones to be added, shoot me an email at <span class="email">rsapkfff [at] pm [dot] me</span> or submit a PR on <a href="https://github.com/rsapkf">GitHub</a>.</p>
+        </div>
+    </div>
+
+    <script src="lib/momentjs/moment.min.js"></script>
+    <script src="lib/momentjs/moment-timezone-with-data.min.js"></script>
+    <script>
+      const run = setInterval(showTime, 1000);
+
+      function showTime() {
+        // New York
+        const newYork = moment.tz(moment(), 'America/New_York');
+
+        // Cities
+        document.getElementById('nyc').innerHTML = newYork.format(
+          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
+        );
+        document.getElementById('la').innerHTML = newYork.clone().tz('America/Los_Angeles').format(
+          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
+        );
+        document.getElementById('london').innerHTML = newYork.clone().tz('Europe/London').format(
+          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
+        );
+        document.getElementById('tokyo').innerHTML = newYork.clone().tz('Asia/Tokyo').format(
+          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
+        );
+        document.getElementById('sydney').innerHTML = newYork.clone().tz('Australia/Sydney').format(
+          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
+        );
+        document.getElementById('shanghai').innerHTML = newYork.clone().tz('Asia/Shanghai').format(
+          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
+        );
+        document.getElementById('new-delhi').innerHTML = newYork.clone().tz('Asia/Kolkata').format(
+          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
+        );
+        document.getElementById('paris').innerHTML = newYork.clone().tz('Europe/Paris').format(
+          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
+        );
+        document.getElementById('moscow').innerHTML = newYork.clone().tz('Europe/Moscow').format(
+          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
+        );
+        document.getElementById('abu-dhabi').innerHTML = newYork.clone().tz('Asia/Dubai').format(
+          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
+        );
+
+        // UTC
+        document.getElementById('utc-time').innerHTML = moment.utc().format(
+          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
+        );
+
+        // User Timezone
+        const userTimeZone = moment.tz.guess();
+        const userTime = newYork.clone().tz(userTimeZone);
+
+        document.getElementById('user-timezone').innerHTML = userTimeZone;
+        document.getElementById('user-time').innerHTML = userTime.format(
+          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
+        );
+        document.getElementById('week-of-the-year').innerHTML = userTime.format(
+          'wo'
+        );
+        document.getElementById('day-of-the-year').innerHTML = userTime.format(
+          'DDDo'
+        );
+
+        // UNIX Timestamp
+        document.getElementById('unix-timestamp').innerHTML = moment().unix();
+      }
+    </script>
+  </body>
+</html>

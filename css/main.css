@@ -1,0 +1,40 @@
+body,
+html {
+  background: rgb(212, 215, 228);
+  font-family: monospace;
+}
+
+tr {
+  background-color: rgb(230, 218, 231);
+}
+
+th {
+  background-color: rgb(129, 141, 141);
+}
+
+a {
+  color: rgb(132, 42, 216);
+}
+
+a:hover {
+  color: rgb(12, 22, 1);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+hr {
+  background-color: black;
+}
+
+.email {
+  font-weight: bold;
+}
+
+.faq {
+  margin: 10rem 1rem;
+}
+
+.question {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
