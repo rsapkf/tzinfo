@@ -3,5 +3,5 @@
 
 /* Technologies Used */
     HTML5, CSS3, JavaScript
-    Momentjs
+    Moment.js
     Firefox Developer Edition, rxvt-unicode, Netlify

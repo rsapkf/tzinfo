@@ -142,7 +142,7 @@
 
         <div class="faq">
             <p class="question">Why?</p>
-            <p>This is a solution to one of my personal problems. I need to check and compare current times of many places at once. There are comprehensive solutions to this problem but not as concise as this list. If you want more timzones to be added, shoot me an email at <span class="email">rsapkfff [at] pm [dot] me</span> or submit a PR on <a href="https://github.com/rsapkf/tzinfo">GitHub</a>.</p>
+            <p>This is a solution to one of my personal problems. I need to check and compare current times of many places at once. There are comprehensive solutions to this problem but not as concise as this list. If you want more timezones to be added, shoot me an email at <span class="email">rsapkfff [at] pm [dot] me</span> or submit a PR on <a href="https://github.com/rsapkf/tzinfo">GitHub</a>.</p>
         </div>
     </div>
 
@@ -154,52 +154,31 @@
       function showTime() {
         // New York
         const newYork = moment.tz(moment(), 'America/New_York');
+        
+        // Time format
+        const timeFormat = 'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)';
 
         // Cities
-        document.getElementById('nyc').innerHTML = newYork.format(
-          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
-        );
-        document.getElementById('la').innerHTML = newYork.clone().tz('America/Los_Angeles').format(
-          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
-        );
-        document.getElementById('london').innerHTML = newYork.clone().tz('Europe/London').format(
-          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
-        );
-        document.getElementById('tokyo').innerHTML = newYork.clone().tz('Asia/Tokyo').format(
-          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
-        );
-        document.getElementById('sydney').innerHTML = newYork.clone().tz('Australia/Sydney').format(
-          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
-        );
-        document.getElementById('shanghai').innerHTML = newYork.clone().tz('Asia/Shanghai').format(
-          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
-        );
-        document.getElementById('new-delhi').innerHTML = newYork.clone().tz('Asia/Kolkata').format(
-          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
-        );
-        document.getElementById('paris').innerHTML = newYork.clone().tz('Europe/Paris').format(
-          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
-        );
-        document.getElementById('moscow').innerHTML = newYork.clone().tz('Europe/Moscow').format(
-          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
-        );
-        document.getElementById('abu-dhabi').innerHTML = newYork.clone().tz('Asia/Dubai').format(
-          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
-        );
+        document.getElementById('nyc').innerHTML = newYork.format(timeFormat);
+        document.getElementById('la').innerHTML = newYork.clone().tz('America/Los_Angeles').format(timeFormat);
+        document.getElementById('london').innerHTML = newYork.clone().tz('Europe/London').format(timeFormat);
+        document.getElementById('tokyo').innerHTML = newYork.clone().tz('Asia/Tokyo').format(timeFormat);
+        document.getElementById('sydney').innerHTML = newYork.clone().tz('Australia/Sydney').format(timeFormat);
+        document.getElementById('shanghai').innerHTML = newYork.clone().tz('Asia/Shanghai').format(timeFormat);
+        document.getElementById('new-delhi').innerHTML = newYork.clone().tz('Asia/Kolkata').format(timeFormat);
+        document.getElementById('paris').innerHTML = newYork.clone().tz('Europe/Paris').format(timeFormat);
+        document.getElementById('moscow').innerHTML = newYork.clone().tz('Europe/Moscow').format(timeFormat);
+        document.getElementById('abu-dhabi').innerHTML = newYork.clone().tz('Asia/Dubai').format(timeFormat);
 
         // UTC
-        document.getElementById('utc-time').innerHTML = moment.utc().format(
-          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
-        );
+        document.getElementById('utc-time').innerHTML = moment.utc().format(timeFormat);
 
         // User Timezone
         const userTimeZone = moment.tz.guess();
         const userTime = newYork.clone().tz(userTimeZone);
 
         document.getElementById('user-timezone').innerHTML = userTimeZone;
-        document.getElementById('user-time').innerHTML = userTime.format(
-          'ddd, MMM Do YYYY, hh:mm:ss A (ZZ)'
-        );
+        document.getElementById('user-time').innerHTML = userTime.format(timeFormat);
         document.getElementById('week-of-the-year').innerHTML = userTime.format(
           'wo'
         );
